@@ -38,12 +38,8 @@ export class ChatServer {
     this._app.get('/', function (req, res) {
       // 레디스로 메세지를 보낸다.
       const publisher: redis.RedisClient = redis.createClient(6379, 'localhost')
-      const message = {
-        author: req.query.author,
-        message: req.query.message
-      }
-      publisher.publish("user-notify", JSON.stringify(message))
-      res.send(message)
+      publisher.publish("user-notify", JSON.stringify(req.query))
+      res.send(req.query)
     })
   }
 
@@ -55,11 +51,7 @@ export class ChatServer {
   private initRedisSubscriber(): void {
     const subscriber: redis.RedisClient = redis.createClient(6379, 'localhost')
     subscriber.on("message", (channel, message) => {
-      const userMessage = JSON.parse(message)
-      this.io.emit('message', {
-        author: userMessage.author,
-        message: userMessage.message
-      })
+      this.io.emit('message', JSON.parse(message))
     })
     subscriber.subscribe("user-notify")
   }

@@ -68,10 +68,7 @@ class App extends React.Component {
             msgIndex++;
             return (
               <div key={msgIndex}>
-                <p>{msg.author}</p>
-                <p>
-                  {msg.message}
-                </p>
+                <p>{JSON.stringify(msg)}</p>
               </div>
             );
           })}
