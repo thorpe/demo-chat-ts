@@ -9,7 +9,7 @@ class App extends React.Component {
   state: ChatState = {
     messages: [
       {
-        message: 'Welcome! Type a message and press Send Message to continue the chat.',
+        message: 'Welcome! the chat.',
         author: 'Bot',
         socketId: ''
       }
@@ -26,7 +26,6 @@ class App extends React.Component {
 
     observable.subscribe((m: ChatMessage) => {
       let messages = this.state.messages;
-
       messages.push(m);
       this.setState({ messages: messages });
     });
@@ -44,7 +43,7 @@ class App extends React.Component {
 
     const handleMessage = (): void => {
 
-      const author: string = 'Ross';
+      const author: string = 'kkkk';
 
       if (this.state.input !== '') {
         this.context.send({
@@ -59,7 +58,6 @@ class App extends React.Component {
       <div className="App">
         <div className="App-chatbox" id="chatbox">
           {this.state.messages.map((msg: ChatMessage) => {
-
             return (
               <div>
                 <p>{JSON.stringify(msg)}</p>
@@ -67,12 +65,7 @@ class App extends React.Component {
             );
           })}
         </div>
-        <input
-          className="App-Textarea"
-          placeholder="Type your messsage here..."
-          onChange={updateInput}
-          value={this.state.input}
-        />
+        <input className="App-Textarea" placeholder="Type your messsage here..." onChange={updateInput} value={this.state.input}/>
         <p>
           <button onClick={() => { handleMessage() }}>
             Send Message

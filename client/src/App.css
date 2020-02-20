@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  padding: 0px 20px;
+  padding: 0px 5px;
 }
 
 
@@ -24,13 +24,13 @@
 .App-chatbox > div {
   background: rgba(0,0,0,0.25);
   border-radius: 1em;
-  padding: 0.25em 1em;
+  padding: 0.20em 1em;
   font-size: 14px;
-  margin: 0.75em 0;
+  margin: 0.55em 0;
 }
 
 .App-chatbox p:first-child {
- font-size: 12px;
+ font-size: 11px;
 }
 
 input {
@@ -39,10 +39,10 @@ input {
   border-radius: 0.25em;
   color: #fff;
   margin: 0.5em;
-  padding: 10px;
+  padding: 5px;
   max-width: 500px;
   width: 100%;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 ::placeholder {
@@ -54,15 +54,6 @@ button {
   border: none;
   color: #61dafb;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 13px;
   text-decoration: none;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
