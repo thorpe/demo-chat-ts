@@ -7,6 +7,7 @@ import * as redis from 'redis'
 const cors = require('cors')
 
 export interface ChatMessage {
+  socketId: string;
   author: string;
   message: string;
 }
@@ -51,7 +52,15 @@ export class ChatServer {
   private initRedisSubscriber(): void {
     const subscriber: redis.RedisClient = redis.createClient(6379, 'localhost')
     subscriber.on("message", (channel, message) => {
-      this.io.emit('message', JSON.parse(message))
+      const m = JSON.parse(message)
+      console.log(m.socketId)
+      if (m.socketId) {
+        console.log('Socket1111 : [server](message): %s', JSON.stringify(m))
+        this.io.to(m.socketId).emit('message', m)
+      } else {
+        console.log('Socket2222 : [server](message): %s', JSON.stringify(m))
+        this.io.emit('message', m)
+      }
     })
     subscriber.subscribe("user-notify")
   }
@@ -64,10 +73,17 @@ export class ChatServer {
 
     this.io.on(ChatEvent.CONNECT, (socket: any) => {
       console.log('Socket : Connected client on port %s.', this.port)
+      console.log('Socket : Connected client on port %s.', socket.id)
 
       socket.on(ChatEvent.MESSAGE, (m: ChatMessage) => {
-        console.log('Socket : [server](message): %s', JSON.stringify(m))
-        this.io.emit('message', m)
+        if (m.socketId) {
+          console.log('Socket : [server](message): %s', JSON.stringify(m))
+          this.io.to(m.socketId).emit('message', m)
+        } else {
+          console.log('Socket : [server](message): %s', JSON.stringify(m))
+          this.io.emit('message', m)
+        }
+
       })
 
       socket.on(ChatEvent.DISCONNECT, () => {

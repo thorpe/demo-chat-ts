@@ -10,17 +10,11 @@
   padding: 0px 20px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 50s linear;
-  display: block;
-  height: 25vmin;
-  margin: 0 auto;
-  pointer-events: none;
-}
 
 .App-chatbox {
   margin: 2em auto;
-  max-height: 300px;
+  min-height: 400px;
+  max-height: 400px;
   overflow-y: scroll;
   text-align: left;
   max-width: 500px;

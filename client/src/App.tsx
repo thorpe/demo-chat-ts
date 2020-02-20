@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { ChatMessage, ChatState } from './Interfaces/ChattingMessageInterface';
 import { ChatContext } from './ChatContext';
-import Header from "./Components/Layouts/Header/Header";
 
 class App extends React.Component {
   static contextType = ChatContext;
@@ -12,7 +10,8 @@ class App extends React.Component {
     messages: [
       {
         message: 'Welcome! Type a message and press Send Message to continue the chat.',
-        author: 'Bot'
+        author: 'Bot',
+        socketId: ''
       }
     ],
     input: ''
@@ -56,18 +55,13 @@ class App extends React.Component {
       }
     };
 
-    let msgIndex = 0;
     return (
       <div className="App">
-        <Header/>
-
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <div className="App-chatbox">
+        <div className="App-chatbox" id="chatbox">
           {this.state.messages.map((msg: ChatMessage) => {
-            msgIndex++;
+
             return (
-              <div key={msgIndex}>
+              <div>
                 <p>{JSON.stringify(msg)}</p>
               </div>
             );

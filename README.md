@@ -28,6 +28,7 @@ http://localhost:3000/
 ### API 호출 Sample URL
 ````
 http://localhost:8080?author=홍길1&message=33331212
+http://localhost:8080?author=홍길1&message=33331212&socketId=
 ````
 * API로 호출시에는 레디스에 PUB(레디스에 전송을 하기때문에) 각각 다른 서버가 다시 레디스를 통해  실행되면서 SUB 하고있어서 
 * chat_procdess.jpeg 참조

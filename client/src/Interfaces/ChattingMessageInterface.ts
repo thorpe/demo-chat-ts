@@ -1,4 +1,5 @@
 export interface ChatMessage {
+  socketId: string;
   author: string;
   message: string;
 }
